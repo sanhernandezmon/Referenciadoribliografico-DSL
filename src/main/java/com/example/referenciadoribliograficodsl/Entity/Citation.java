@@ -1,19 +1,37 @@
 package com.example.referenciadoribliograficodsl.Entity;
 
 import java.util.Date;
+import java.util.List;
 
+import com.example.referenciadoribliograficodsl.util.Resolver;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class Citation {
 
+    private final Resolver resolver = new Resolver();
+
     private CitationType citationType;
+
     private String authorName;
+
     private String authorLastName;
+
     private String title;
+
     private Date publicationDate;
+
     private Date consultDate;
+
     private String resume;
+
+    private String city;
+
+    private String editorial;
+
+    private WebSite webSite;
+
+    private Articulo articulo;
 
     public void setCitationType(CitationType citationType) {
         this.citationType = citationType;
@@ -24,7 +42,6 @@ public class Citation {
     public void setAuthorLastName(String authorLastName) {
         this.authorLastName = authorLastName;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -34,45 +51,59 @@ public class Citation {
     public void setConsultDate(Date consultDate) {
         this.consultDate = consultDate;
     }
-
     public void setResume(String resume) {
         this.resume = resume;
+    }
+    public void setCity(String city) { this.city = city;}
+    public void setEditorial(String editorial) { this.editorial = editorial;}
+    public void setWebSite(WebSite webSite) {this.webSite = webSite;}
+
+    public void setArticulo(Articulo articulo) { this.articulo = articulo;}
+
+
+
+    public CitationType getCitationType() {
+        return citationType;
+    }
+
+    public String getAuthorName() {
+        return authorName;
     }
 
     public String getAuthorLastName() {
         return authorLastName;
     }
 
-    private String citateEnglishBook(Citation citation){
-        return "";
+    public String getTitle() {
+        return title;
     }
 
-    private String citateEnglishWebsite(Citation citation){
-        return "";
+    public Date getPublicationDate() {
+        return publicationDate;
     }
 
-    private String citateEnglishArticle(Citation citation){
-        return "";
+    public Date getConsultDate() {
+        return consultDate;
     }
 
-    private String citateEnglishImage(Citation citation){
-        return "";
+    public String getResume() {
+        return resume;
     }
 
-    private String citateSpanishBook(Citation citation){
-        return "";
+    public String getCity() {
+        return city;
     }
 
-    private String citateSpanishWebsite(Citation citation){
-        return "";
+    public String getEditorial() {
+        return editorial;
     }
 
-    private String citateSpanishArticle(Citation citation){
-        return "";
+    public WebSite getWebSite() {
+        return webSite;
     }
 
-    private String citateSpanishImage(Citation citation){
-        return "";
+    public Articulo getArticulo(){
+        return articulo;
     }
 
     public String toString(Lenguaje lenguaje) {
@@ -80,26 +111,24 @@ public class Citation {
             case ENGLISH:
                 switch (citationType){
                     case book:
-                        return citateSpanishBook(this);
+                        return resolver.citateSpanishBook(this);
                     case website:
-                        return citateSpanishWebsite(this);
-                    case image:
-                        return citateSpanishImage(this);
+                        return resolver.citateSpanishWebsite(this);
                     case article:
-                        return citateSpanishArticle(this);
+                        return resolver.citateSpanishArticle(this);
                 }
             case SPANISH:
                 switch (citationType){
                     case book:
-                        return citateEnglishBook(this);
+                        return resolver.citateEnglishBook(this);
                     case website:
-                        return citateEnglishWebsite(this);
-                    case image:
-                        return citateEnglishImage(this);
+                        return resolver.citateEnglishWebsite(this);
                     case article:
-                        return citateEnglishArticle(this);
+                        return resolver.citateEnglishArticle(this);
                 }
         }
         return null;
     }
+
+
 }

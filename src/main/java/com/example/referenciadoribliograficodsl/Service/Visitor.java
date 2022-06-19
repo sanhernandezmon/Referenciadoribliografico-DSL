@@ -2,7 +2,6 @@ package com.example.referenciadoribliograficodsl.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import Gen.citatorBaseVisitor;
 import Gen.citatorParser;
@@ -56,29 +55,39 @@ public class Visitor<T> extends citatorBaseVisitor<T> {
         if (ctx.resume()!= null){
             citation.setResume((String) visitResume(ctx.resume()));
         }
+        if (ctx.city()!= null){
+            citation.setCity((String) visitCity(ctx.city()));
+        }
+        if (ctx.editorial()!= null){
+            citation.setEditorial((String) visitEditorial(ctx.editorial()));
+        }
+        if (ctx.website()!= null){
+            citation.setWebSite((WebSite) visitWebsite(ctx.website()));
+        }
+        if (ctx.article()!= null){
+            citation.setArticulo((Articulo) visitArticle(ctx.article()));
+        }
         return (T) citation;
     }
 
     @Override public T visitAuthorName(citatorParser.AuthorNameContext ctx) {
-        return (T) ctx.AUTHORNAME().getText();
+        return (T) ctx.ID().getText();
     }
 
     @Override public T visitAuthorLastName(citatorParser.AuthorLastNameContext ctx) {
-        return (T) ctx.AUTHORLASTNAME().getText();
+        return (T) ctx.ID().getText();
     }
 
     @Override public T visitCitationTitle(citatorParser.CitationTitleContext ctx) {
-        return (T) ctx.TITLE().getText();
+        return (T) ctx.ID().getText();
     }
 
     @Override public T visitPublicationDate(citatorParser.PublicationDateContext ctx) {
-        Date date = (Date) visitDate(ctx.date());
-        return (T) date;
+        return (T) visitDate(ctx.date());
     }
 
     @Override public T visitConsultDate(citatorParser.ConsultDateContext ctx) {
-        Date date = (Date) visitDate(ctx.date());
-        return (T) date;
+        return (T) visitDate(ctx.date());
     }
 
     @Override public T visitCitationType(citatorParser.CitationTypeContext ctx) {
@@ -139,5 +148,21 @@ public class Visitor<T> extends citatorBaseVisitor<T> {
             return (T) Integer.valueOf(12);
         }
         return (T) Integer.valueOf(0);
+    }
+
+    @Override public T visitCity(citatorParser.CityContext ctx) {
+        return (T) ctx.ID().getText();
+    }
+
+    @Override public T visitEditorial(citatorParser.EditorialContext ctx) {
+        return (T) ctx.ID().getText();
+    }
+
+    @Override public T visitWebsite(citatorParser.WebsiteContext ctx) {
+        return (T) new WebSite(ctx.ID(0).getText(), ctx.ID(1).getText());
+    }
+
+    @Override public T visitArticle(citatorParser.ArticleContext ctx) {
+        return (T) new Articulo(ctx.ID(0).getText(),Integer.parseInt(ctx.ID(1).getText()),ctx.ID(2).getText());
     }
 }

@@ -3,13 +3,19 @@ grammar citator;
 reference: lenguaje citations;
 lenguaje: LENGUAJEKEY LENGUAJEOPTION;
 citations: citation citations? | EOF | ;
-citation: CITATIONKEY '{'citationType authorName authorLastName citationTitle? publicationDate? consultDate? resume? '}';
+citation: CITATIONKEY '{'citationType authorName authorLastName citationTitle? publicationDate? consultDate? resume? city? editorial? website? article?'}';
+
+
 citationType: CITATIONTYPEKEY CITATIONTYPE SEMICOLOM;
-authorName: AUTHORNAMEKEY AUTHORNAME SEMICOLOM;
-authorLastName: AUTHORLASTNAMEKEY AUTHORLASTNAME SEMICOLOM;
-citationTitle: TITLEKEY TITLE SEMICOLOM;
+authorName: AUTHORNAMEKEY ID SEMICOLOM;
+authorLastName: AUTHORLASTNAMEKEY ID SEMICOLOM;
+citationTitle: TITLEKEY ID SEMICOLOM;
+website: WEBSITEKEY ID ID SEMICOLOM;
 publicationDate: PUBLICATIONDATEKEY date SEMICOLOM;
 consultDate:CONSULTDATEKEY date SEMICOLOM;
+article: ARTICLEKEY '(' ID ', ' ID ', ' ID ')' SEMICOLOM;
+city: CITYKEY ID SEMICOLOM;
+editorial: EDITORIALKEY ID SEMICOLOM;
 resume:RESUMEKEY '"' RESUMETEXT '"' SEMICOLOM;
 date : DAY SEPARATOR month SEPARATOR YEAR
     | DAY SEPARATOR MONTH SEPARATOR YEAR;
@@ -22,17 +28,20 @@ LENGUAJEKEY: 'Lenguaje';
 LENGUAJEOPTION: 'SPANISH' | 'ENGLISH';
 CITATIONKEY: 'resource';
 CITATIONTYPEKEY: 'type';
-CITATIONTYPE: 'article' | 'image' | 'website' | 'book';
+CITATIONTYPE: 'article' | 'website' | 'book';
 AUTHORLASTNAMEKEY: 'last_name';
 AUTHORNAMEKEY: 'name';
 TITLEKEY: 'title';
 PUBLICATIONDATEKEY: 'published_on';
 CONSULTDATEKEY: 'consuled_on';
 RESUMEKEY: 'resume';
+CITYKEY: 'city';
+EDITORIALKEY: 'editorial';
+WEBSITEKEY: 'website_definition';
+ARTICLEKEY: 'article_definition';
 
-AUTHORNAME        : [a-zA-Z][a-zA-Z0-9_]{2,20} ;
-AUTHORLASTNAME        : [a-zA-Z][a-zA-Z0-9_]{2,20} ;
-TITLE: [a-zA-Z][a-zA-Z0-9_]{2,40};
+
+ID: [a-zA-Z][a-zA-Z0-9_]{2,40};
 RESUMETEXT        : [a-zA-Z][a-zA-Z0-9_]* ;
 
 

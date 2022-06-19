@@ -122,14 +122,6 @@ public class citatorParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_reference; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterReference(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitReference(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitReference(this);
 			else return visitor.visitChildren(this);
@@ -166,14 +158,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_lenguaje; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterLenguaje(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitLenguaje(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitLenguaje(this);
@@ -216,14 +200,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_citations; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterCitations(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitCitations(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitCitations(this);
@@ -319,14 +295,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_citation; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterCitation(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitCitation(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitCitation(this);
@@ -455,14 +423,6 @@ public class citatorParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_citationType; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterCitationType(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitCitationType(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitCitationType(this);
 			else return visitor.visitChildren(this);
@@ -502,14 +462,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_authorName; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterAuthorName(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitAuthorName(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitAuthorName(this);
@@ -551,14 +503,6 @@ public class citatorParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_authorLastName; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterAuthorLastName(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitAuthorLastName(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitAuthorLastName(this);
 			else return visitor.visitChildren(this);
@@ -598,14 +542,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_citationTitle; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterCitationTitle(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitCitationTitle(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitCitationTitle(this);
@@ -649,14 +585,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_website; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterWebsite(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitWebsite(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitWebsite(this);
@@ -702,14 +630,6 @@ public class citatorParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_publicationDate; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterPublicationDate(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitPublicationDate(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitPublicationDate(this);
 			else return visitor.visitChildren(this);
@@ -751,14 +671,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_consultDate; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterConsultDate(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitConsultDate(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitConsultDate(this);
@@ -802,14 +714,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_article; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterArticle(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitArticle(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitArticle(this);
@@ -863,14 +767,6 @@ public class citatorParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_city; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterCity(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitCity(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitCity(this);
 			else return visitor.visitChildren(this);
@@ -911,14 +807,6 @@ public class citatorParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_editorial; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterEditorial(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitEditorial(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitEditorial(this);
 			else return visitor.visitChildren(this);
@@ -958,14 +846,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_resume; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterResume(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitResume(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitResume(this);
@@ -1017,14 +897,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_date; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterDate(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitDate(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitDate(this);
@@ -1099,14 +971,6 @@ public class citatorParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_month; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).enterMonth(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof citatorListener ) ((citatorListener)listener).exitMonth(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof citatorVisitor ) return ((citatorVisitor<? extends T>)visitor).visitMonth(this);

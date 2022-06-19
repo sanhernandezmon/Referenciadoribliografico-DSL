@@ -17,12 +17,12 @@ public class citatorLexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, WS=7, SEMICOLOM=8, LENGUAJEKEY=9, 
-		LENGUAJEOPTION=10, CITATIONKEY=11, CITATIONTYPEKEY=12, CITATIONTYPE=13, 
-		AUTHORLASTNAMEKEY=14, AUTHORNAMEKEY=15, TITLEKEY=16, PUBLICATIONDATEKEY=17, 
-		CONSULTDATEKEY=18, RESUMEKEY=19, CITYKEY=20, EDITORIALKEY=21, WEBSITEKEY=22, 
-		ARTICLEKEY=23, ID=24, RESUMETEXT=25, DIGIT=26, FIRSTMONTHDIGIT=27, FIRSTDAYDIGIT=28, 
-		YEAR=29, DAY=30, MONTH=31, JAN=32, FEB=33, MAR=34, APR=35, MAY=36, JUN=37, 
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, WS=7, SEMICOLOM=8, LENGUAJEKEY=9,
+		LENGUAJEOPTION=10, CITATIONKEY=11, CITATIONTYPEKEY=12, CITATIONTYPE=13,
+		AUTHORLASTNAMEKEY=14, AUTHORNAMEKEY=15, TITLEKEY=16, PUBLICATIONDATEKEY=17,
+		CONSULTDATEKEY=18, RESUMEKEY=19, CITYKEY=20, EDITORIALKEY=21, WEBSITEKEY=22,
+		ARTICLEKEY=23, ID=24, RESUMETEXT=25, DIGIT=26, FIRSTMONTHDIGIT=27, FIRSTDAYDIGIT=28,
+		YEAR=29, DAY=30, MONTH=31, JAN=32, FEB=33, MAR=34, APR=35, MAY=36, JUN=37,
 		JUL=38, AUG=39, SEP=40, OCT=41, NOV=42, DEC=43, SEPARATOR=44;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
@@ -34,12 +34,12 @@ public class citatorLexer extends Lexer {
 
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "WS", "SEMICOLOM", "LENGUAJEKEY", 
-			"LENGUAJEOPTION", "CITATIONKEY", "CITATIONTYPEKEY", "CITATIONTYPE", "AUTHORLASTNAMEKEY", 
-			"AUTHORNAMEKEY", "TITLEKEY", "PUBLICATIONDATEKEY", "CONSULTDATEKEY", 
-			"RESUMEKEY", "CITYKEY", "EDITORIALKEY", "WEBSITEKEY", "ARTICLEKEY", "ID", 
-			"RESUMETEXT", "DIGIT", "FIRSTMONTHDIGIT", "FIRSTDAYDIGIT", "YEAR", "DAY", 
-			"MONTH", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", 
+			"T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "WS", "SEMICOLOM", "LENGUAJEKEY",
+			"LENGUAJEOPTION", "CITATIONKEY", "CITATIONTYPEKEY", "CITATIONTYPE", "AUTHORLASTNAMEKEY",
+			"AUTHORNAMEKEY", "TITLEKEY", "PUBLICATIONDATEKEY", "CONSULTDATEKEY",
+			"RESUMEKEY", "CITYKEY", "EDITORIALKEY", "WEBSITEKEY", "ARTICLEKEY", "ID",
+			"RESUMETEXT", "DIGIT", "FIRSTMONTHDIGIT", "FIRSTDAYDIGIT", "YEAR", "DAY",
+			"MONTH", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP",
 			"OCT", "NOV", "DEC", "SEPARATOR"
 		};
 	}
@@ -47,21 +47,21 @@ public class citatorLexer extends Lexer {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'{'", "'}'", "'('", "', '", "')'", "'\"'", null, "';'", "'Lenguaje'", 
-			null, "'resource'", "'type'", null, "'last_name'", "'name'", "'title'", 
-			"'published_on'", "'consuled_on'", "'resume'", "'city'", "'editorial'", 
+			null, "'{'", "'}'", "'('", "', '", "')'", "'\"'", null, "';'", "'Lenguaje'",
+			null, "'resource'", "'type'", null, "'last_name'", "'name'", "'title'",
+			"'published_on'", "'consuled_on'", "'resume'", "'city'", "'editorial'",
 			"'website_definition'", "'article_definition'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, "WS", "SEMICOLOM", "LENGUAJEKEY", 
-			"LENGUAJEOPTION", "CITATIONKEY", "CITATIONTYPEKEY", "CITATIONTYPE", "AUTHORLASTNAMEKEY", 
-			"AUTHORNAMEKEY", "TITLEKEY", "PUBLICATIONDATEKEY", "CONSULTDATEKEY", 
-			"RESUMEKEY", "CITYKEY", "EDITORIALKEY", "WEBSITEKEY", "ARTICLEKEY", "ID", 
-			"RESUMETEXT", "DIGIT", "FIRSTMONTHDIGIT", "FIRSTDAYDIGIT", "YEAR", "DAY", 
-			"MONTH", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", 
+			null, null, null, null, null, null, null, "WS", "SEMICOLOM", "LENGUAJEKEY",
+			"LENGUAJEOPTION", "CITATIONKEY", "CITATIONTYPEKEY", "CITATIONTYPE", "AUTHORLASTNAMEKEY",
+			"AUTHORNAMEKEY", "TITLEKEY", "PUBLICATIONDATEKEY", "CONSULTDATEKEY",
+			"RESUMEKEY", "CITYKEY", "EDITORIALKEY", "WEBSITEKEY", "ARTICLEKEY", "ID",
+			"RESUMETEXT", "DIGIT", "FIRSTMONTHDIGIT", "FIRSTDAYDIGIT", "YEAR", "DAY",
+			"MONTH", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP",
 			"OCT", "NOV", "DEC", "SEPARATOR"
 		};
 	}
@@ -134,7 +134,6 @@ public class citatorLexer extends Lexer {
 	private void ID_action(RuleContext _localctx, int actionIndex) {
 		switch (actionIndex) {
 		case 0:
-			2,40
 			break;
 		}
 	}

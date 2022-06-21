@@ -37,7 +37,7 @@ public class Bibliography {
         citations.sort(new CitationByLastNameComparer());
         StringBuilder bibliography = new StringBuilder(getBibliographyTitle() + "\n");
         for (Citation citation:citations) {
-            bibliography.append(citation.toString(this.lenguaje));
+            bibliography.append(citation.toString(this.lenguaje)).append("\n");
         }
         return bibliography.toString();
     }

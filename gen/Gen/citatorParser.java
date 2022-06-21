@@ -22,8 +22,9 @@ public class citatorParser extends Parser {
 		AUTHORLASTNAMEKEY=13, AUTHORNAMEKEY=14, TITLEKEY=15, PUBLICATIONDATEKEY=16, 
 		CONSULTDATEKEY=17, RESUMEKEY=18, CITYKEY=19, EDITORIALKEY=20, WEBSITEKEY=21, 
 		ARTICLEKEY=22, JAN=23, FEB=24, MAR=25, APR=26, MAY=27, JUN=28, JUL=29, 
-		AUG=30, SEP=31, OCT=32, NOV=33, DEC=34, ID=35, STRING=36, DIGIT=37, FIRSTMONTHDIGIT=38, 
-		FIRSTDAYDIGIT=39, YEAR=40, DAY=41, MONTH=42, SEPARATOR=43;
+		AUG=30, SEP=31, OCT=32, NOV=33, DEC=34, ID=35, STRING=36, YEAR=37, DAY=38, 
+		MONTH=39, PAGINAS=40, VOLUMEN=41, DIGIT=42, FIRSTMONTHDIGIT=43, FIRSTDAYDIGIT=44, 
+		SEPARATOR=45;
 	public static final int
 		RULE_reference = 0, RULE_lenguaje = 1, RULE_citations = 2, RULE_citation = 3, 
 		RULE_citationType = 4, RULE_authorName = 5, RULE_authorLastName = 6, RULE_citationTitle = 7, 
@@ -54,8 +55,8 @@ public class citatorParser extends Parser {
 			"AUTHORNAMEKEY", "TITLEKEY", "PUBLICATIONDATEKEY", "CONSULTDATEKEY", 
 			"RESUMEKEY", "CITYKEY", "EDITORIALKEY", "WEBSITEKEY", "ARTICLEKEY", "JAN", 
 			"FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", 
-			"DEC", "ID", "STRING", "DIGIT", "FIRSTMONTHDIGIT", "FIRSTDAYDIGIT", "YEAR", 
-			"DAY", "MONTH", "SEPARATOR"
+			"DEC", "ID", "STRING", "YEAR", "DAY", "MONTH", "PAGINAS", "VOLUMEN", 
+			"DIGIT", "FIRSTMONTHDIGIT", "FIRSTDAYDIGIT", "SEPARATOR"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -722,10 +723,9 @@ public class citatorParser extends Parser {
 
 	public static class ArticleContext extends ParserRuleContext {
 		public TerminalNode ARTICLEKEY() { return getToken(citatorParser.ARTICLEKEY, 0); }
-		public List<TerminalNode> ID() { return getTokens(citatorParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(citatorParser.ID, i);
-		}
+		public TerminalNode STRING() { return getToken(citatorParser.STRING, 0); }
+		public TerminalNode VOLUMEN() { return getToken(citatorParser.VOLUMEN, 0); }
+		public TerminalNode PAGINAS() { return getToken(citatorParser.PAGINAS, 0); }
 		public TerminalNode SEMICOLOM() { return getToken(citatorParser.SEMICOLOM, 0); }
 		public ArticleContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -749,15 +749,15 @@ public class citatorParser extends Parser {
 			setState(111);
 			match(T__2);
 			setState(112);
-			match(ID);
+			match(STRING);
 			setState(113);
 			match(T__3);
 			setState(114);
-			match(ID);
+			match(VOLUMEN);
 			setState(115);
 			match(T__3);
 			setState(116);
-			match(ID);
+			match(PAGINAS);
 			setState(117);
 			match(T__4);
 			setState(118);
@@ -960,7 +960,7 @@ public class citatorParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001+\u0089\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001-\u0089\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
@@ -1022,15 +1022,15 @@ public class citatorParser extends Parser {
 		"fg\u0005\u0010\u0000\u0000gh\u0003\u001c\u000e\u0000hi\u0005\u0007\u0000"+
 		"\u0000i\u0013\u0001\u0000\u0000\u0000jk\u0005\u0011\u0000\u0000kl\u0003"+
 		"\u001c\u000e\u0000lm\u0005\u0007\u0000\u0000m\u0015\u0001\u0000\u0000"+
-		"\u0000no\u0005\u0016\u0000\u0000op\u0005\u0003\u0000\u0000pq\u0005#\u0000"+
-		"\u0000qr\u0005\u0004\u0000\u0000rs\u0005#\u0000\u0000st\u0005\u0004\u0000"+
-		"\u0000tu\u0005#\u0000\u0000uv\u0005\u0005\u0000\u0000vw\u0005\u0007\u0000"+
+		"\u0000no\u0005\u0016\u0000\u0000op\u0005\u0003\u0000\u0000pq\u0005$\u0000"+
+		"\u0000qr\u0005\u0004\u0000\u0000rs\u0005)\u0000\u0000st\u0005\u0004\u0000"+
+		"\u0000tu\u0005(\u0000\u0000uv\u0005\u0005\u0000\u0000vw\u0005\u0007\u0000"+
 		"\u0000w\u0017\u0001\u0000\u0000\u0000xy\u0005\u0013\u0000\u0000yz\u0005"+
 		"#\u0000\u0000z{\u0005\u0007\u0000\u0000{\u0019\u0001\u0000\u0000\u0000"+
 		"|}\u0005\u0014\u0000\u0000}~\u0005$\u0000\u0000~\u007f\u0005\u0007\u0000"+
-		"\u0000\u007f\u001b\u0001\u0000\u0000\u0000\u0080\u0081\u0005)\u0000\u0000"+
-		"\u0081\u0082\u0005+\u0000\u0000\u0082\u0083\u0003\u001e\u000f\u0000\u0083"+
-		"\u0084\u0005+\u0000\u0000\u0084\u0085\u0005(\u0000\u0000\u0085\u001d\u0001"+
+		"\u0000\u007f\u001b\u0001\u0000\u0000\u0000\u0080\u0081\u0005&\u0000\u0000"+
+		"\u0081\u0082\u0005-\u0000\u0000\u0082\u0083\u0003\u001e\u000f\u0000\u0083"+
+		"\u0084\u0005-\u0000\u0000\u0084\u0085\u0005%\u0000\u0000\u0085\u001d\u0001"+
 		"\u0000\u0000\u0000\u0086\u0087\u0007\u0000\u0000\u0000\u0087\u001f\u0001"+
 		"\u0000\u0000\u0000\u000b)-58;>ADGRY";
 	public static final ATN _ATN =

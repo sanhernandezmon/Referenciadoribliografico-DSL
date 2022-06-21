@@ -1,5 +1,7 @@
 package com.example.referenciadoribliograficodsl.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +22,9 @@ public class Resolver {
                 return NotFoundDate.sf.toString();
             }
         }else{
-            return  String.valueOf(date.getYear()) ;
+            String pattern = "yyyy";
+            SimpleDateFormat format = new SimpleDateFormat(pattern);
+            return format.format(date);
         }
     }
 
@@ -32,7 +36,8 @@ public class Resolver {
                 return NotFoundDate.sf.toString();
             }
         }else{
-            return date.getDate() +  date.getMonth() + String.valueOf(date.getYear()) ;
+            DateFormat format = DateFormat.getDateInstance();
+            return format.format(date);
         }
     }
 
@@ -44,62 +49,71 @@ public class Resolver {
                 return NotFoundDate.sf.toString();
             }
         }else{
-            return date.getYear() + ", " + date.getMonth() ;
+            String pattern = "yyyy - MMM";
+            SimpleDateFormat format = new SimpleDateFormat(pattern);
+            return format.format(date);
         }
     }
     public String resolveAuthorName(String AuthorName){
         List<String> names = List.of(AuthorName.split(" "));
         List<Character> initials = new ArrayList<>();
-        String result = "";
-        if(names.size()<1){
+        StringBuilder result = new StringBuilder(" ");
+        if(names.size()>1){
             for (String name:AuthorName.split(" ")) {
                 initials.add(name.charAt(0));
             }
         }else{
             initials.add(AuthorName.charAt(0));
         }
+
         for (Character initial : initials) {
-            result.concat(initial + ". ");
+            result.append(initial).append(". ");
         }
-        return result;
+        return result.toString();
     }
 
 
     public String citateEnglishBook(Citation citation){
         return citation.getAuthorLastName() + " , " + resolveAuthorName(citation.getAuthorName()) +
                 "(" + resolveDateBook(citation.getPublicationDate(), Lenguaje.ENGLISH)+ ") " +
-                citation.getTitle() + " " + citation.getEditorial();
+                citation.getTitle() + " , " + citation.getEditorial();
     }
 
     public String citateEnglishWebsite(Citation citation){
+        if(citation.getWebSite()==null){
+            return "please fill the website fields";
+        }
         return citation.getAuthorLastName() + " , " + resolveAuthorName(citation.getAuthorName()) +
                 "(" + resolveDateWebsite(citation.getConsultDate(), Lenguaje.ENGLISH)+ ") " +
-                citation.getTitle() + " " + citation.getWebSite().getName() + " " + citation.getWebSite().getUrl();
+                citation.getTitle() + " , " + citation.getWebSite().getName() + " " + citation.getWebSite().getUrl();
     }
 
     public String citateEnglishArticle(Citation citation){
+        if(citation.getArticulo()==null){
+            return "please fill the article fields";
+        }
         return citation.getAuthorLastName() + " , " + resolveAuthorName(citation.getAuthorName()) +
                 "(" + resolveDateArticle(citation.getConsultDate(), Lenguaje.ENGLISH)+ ") " +
-                citation.getTitle() + " " + citation.getArticulo().getPaperName() + " (" +
+                citation.getTitle() + " , " + citation.getArticulo().getPaperName() + " (" +
                 citation.getArticulo().getVolumen() + ") " + citation.getArticulo().getPaginas();
     }
 
     public String citateSpanishBook(Citation citation){
         return citation.getAuthorLastName() + " , " + resolveAuthorName(citation.getAuthorName()) +
                 "(" + resolveDateBook(citation.getPublicationDate(), Lenguaje.SPANISH)+ ") " +
-                citation.getTitle() + " " + citation.getEditorial();
+                citation.getTitle() + " , " + citation.getEditorial();
     }
 
     public String citateSpanishWebsite(Citation citation){
         return citation.getAuthorLastName() + " , " + resolveAuthorName(citation.getAuthorName()) +
                 "(" + resolveDateWebsite(citation.getConsultDate(), Lenguaje.SPANISH)+ ") " +
-                citation.getTitle() + " " + citation.getWebSite().getName() + " " + citation.getWebSite().getUrl();
+                citation.getTitle() + " , " + citation.getWebSite().getName() + " " + citation.getWebSite().getUrl();
     }
 
     public String citateSpanishArticle(Citation citation){
         return citation.getAuthorLastName() + " , " + resolveAuthorName(citation.getAuthorName()) +
                 "(" + resolveDateArticle(citation.getConsultDate(), Lenguaje.SPANISH)+ ") " +
-                citation.getTitle() + " " + citation.getArticulo().getPaperName() + " (" +
+                citation.getTitle() + " , " + citation.getArticulo().getPaperName() + " (" +
                 citation.getArticulo().getVolumen() + ") " + citation.getArticulo().getPaginas();
     }
 

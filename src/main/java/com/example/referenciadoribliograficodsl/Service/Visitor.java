@@ -1,8 +1,6 @@
 package com.example.referenciadoribliograficodsl.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import Gen.citatorBaseVisitor;
 import Gen.citatorParser;
@@ -74,19 +72,19 @@ public class Visitor<T> extends citatorBaseVisitor<T> {
     }
 
     @Override public T visitAuthorName(citatorParser.AuthorNameContext ctx) {
-        String SecondName = "";
+        String name = ctx.ID(0).getText();
         if (ctx.ID(1)!= null){
-            SecondName = ctx.ID(1).getText();
+            name =  name.concat(" " + ctx.ID(1).getText()) ;
         }
-        return (T) (ctx.ID(0).getText() + SecondName);
+        return (T) name;
     }
 
     @Override public T visitAuthorLastName(citatorParser.AuthorLastNameContext ctx) {
-        String SecondLastName = "";
+        String lastName = ctx.ID(0).getText();
         if (ctx.ID(1)!= null){
-            SecondLastName = ctx.ID(1).getText();
+            lastName =  lastName.concat(" " + ctx.ID(1).getText()) ;
         }
-        return (T)  (ctx.ID(0).getText() + SecondLastName);
+        return (T) lastName;
     }
 
     @Override public T visitCitationTitle(citatorParser.CitationTitleContext ctx) {
@@ -106,10 +104,11 @@ public class Visitor<T> extends citatorBaseVisitor<T> {
     }
 
     @Override public T visitDate(citatorParser.DateContext ctx) {
-        Date date = new Date();
-        date.setYear(Integer.valueOf(ctx.YEAR().getText()));
-        date.setDate(Integer.valueOf(ctx.DAY().getText()));
-        date.setMonth((Integer) visitMonth(ctx.month()));
+        Integer year = Integer.valueOf(ctx.YEAR().getText());
+        Integer month = (Integer) visitMonth(ctx.month());
+        Integer day = Integer.valueOf(ctx.DAY().getText());
+        Date date = new GregorianCalendar(year, month - 1, day).getTime();
+
 
         return (T)date;
     }
@@ -167,6 +166,7 @@ public class Visitor<T> extends citatorBaseVisitor<T> {
     }
 
     @Override public T visitArticle(citatorParser.ArticleContext ctx) {
-        return (T) new Articulo(ctx.ID(0).getText(),Integer.parseInt(ctx.ID(1).getText()),ctx.ID(2).getText());
+        return (T) new Articulo(ctx.STRING().getText().substring(1,ctx.STRING().getText().length()-1),Integer.parseInt(ctx.VOLUMEN()
+                .getText()),ctx.PAGINAS().getText());
     }
 }

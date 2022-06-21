@@ -7,7 +7,6 @@ public class Articulo {
 
     private String paperName;
     private int volumen;
-
     private String Paginas;
 
     public String getPaperName() {

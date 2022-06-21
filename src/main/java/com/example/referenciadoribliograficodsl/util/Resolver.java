@@ -85,7 +85,7 @@ public class Resolver {
         }
         return citation.getAuthorLastName() + " , " + resolveAuthorName(citation.getAuthorName()) +
                 "(" + resolveDateWebsite(citation.getConsultDate(), Lenguaje.ENGLISH)+ ") " +
-                citation.getTitle() + " , " + citation.getWebSite().getName() + " " + citation.getWebSite().getUrl();
+                citation.getTitle() + " , " + citation.getWebSite().getName() + " , " + citation.getWebSite().getUrl();
     }
 
     public String citateEnglishArticle(Citation citation){
@@ -93,7 +93,7 @@ public class Resolver {
             return "please fill the article fields";
         }
         return citation.getAuthorLastName() + " , " + resolveAuthorName(citation.getAuthorName()) +
-                "(" + resolveDateArticle(citation.getConsultDate(), Lenguaje.ENGLISH)+ ") " +
+                "(" + resolveDateArticle(citation.getPublicationDate(), Lenguaje.ENGLISH)+ ") " +
                 citation.getTitle() + " , " + citation.getArticulo().getPaperName() + " (" +
                 citation.getArticulo().getVolumen() + ") " + citation.getArticulo().getPaginas();
     }
@@ -107,12 +107,12 @@ public class Resolver {
     public String citateSpanishWebsite(Citation citation){
         return citation.getAuthorLastName() + " , " + resolveAuthorName(citation.getAuthorName()) +
                 "(" + resolveDateWebsite(citation.getConsultDate(), Lenguaje.SPANISH)+ ") " +
-                citation.getTitle() + " , " + citation.getWebSite().getName() + " " + citation.getWebSite().getUrl();
+                citation.getTitle() + " , " + citation.getWebSite().getName() + " , " + citation.getWebSite().getUrl();
     }
 
     public String citateSpanishArticle(Citation citation){
         return citation.getAuthorLastName() + " , " + resolveAuthorName(citation.getAuthorName()) +
-                "(" + resolveDateArticle(citation.getConsultDate(), Lenguaje.SPANISH)+ ") " +
+                "(" + resolveDateArticle(citation.getPublicationDate(), Lenguaje.SPANISH)+ ") " +
                 citation.getTitle() + " , " + citation.getArticulo().getPaperName() + " (" +
                 citation.getArticulo().getVolumen() + ") " + citation.getArticulo().getPaginas();
     }

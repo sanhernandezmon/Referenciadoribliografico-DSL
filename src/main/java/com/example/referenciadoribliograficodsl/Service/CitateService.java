@@ -6,11 +6,13 @@ import Gen.citatorLexer;
 import Gen.citatorParser;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CitateService {
 
-    public String citate(String text) throws IOException {
-        citatorLexer lexer = new citatorLexer(CharStreams.fromFileName("input/input.txt"));
+    public String citate(String text)  {
+        citatorLexer lexer = new citatorLexer(CharStreams.fromString(text));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         citatorParser parser = new citatorParser(tokens);
         ParseTree tree = parser.reference();

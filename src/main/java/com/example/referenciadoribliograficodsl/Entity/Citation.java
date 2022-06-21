@@ -23,8 +23,6 @@ public class Citation {
 
     private Date consultDate;
 
-    private String resume;
-
     private String city;
 
     private String editorial;
@@ -50,9 +48,6 @@ public class Citation {
     }
     public void setConsultDate(Date consultDate) {
         this.consultDate = consultDate;
-    }
-    public void setResume(String resume) {
-        this.resume = resume;
     }
     public void setCity(String city) { this.city = city;}
     public void setEditorial(String editorial) { this.editorial = editorial;}
@@ -86,10 +81,6 @@ public class Citation {
         return consultDate;
     }
 
-    public String getResume() {
-        return resume;
-    }
-
     public String getCity() {
         return city;
     }
@@ -108,7 +99,7 @@ public class Citation {
 
     public String toString(Lenguaje lenguaje) {
         switch (lenguaje){
-            case ENGLISH:
+            case SPANISH:
                 switch (citationType){
                     case book:
                         return resolver.citateSpanishBook(this);
@@ -117,7 +108,7 @@ public class Citation {
                     case article:
                         return resolver.citateSpanishArticle(this);
                 }
-            case SPANISH:
+            case ENGLISH:
                 switch (citationType){
                     case book:
                         return resolver.citateEnglishBook(this);

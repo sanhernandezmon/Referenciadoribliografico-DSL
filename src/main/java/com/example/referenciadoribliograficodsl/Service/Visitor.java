@@ -1,20 +1,26 @@
 package com.example.referenciadoribliograficodsl.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import Gen.citatorBaseVisitor;
 import Gen.citatorParser;
 import com.example.referenciadoribliograficodsl.Entity.*;
+import com.example.referenciadoribliograficodsl.util.Resolver;
 
 public class Visitor<T> extends citatorBaseVisitor<T> {
-    List<Citation> citations = List.of();
+    List<Citation> citations = new ArrayList<>();
     Bibliography bibliography = new Bibliography(Lenguaje.SPANISH ,citations);
+
+    Resolver resolver = new Resolver();
 
     @Override public T visitReference(citatorParser.ReferenceContext ctx) {
         Lenguaje lenguaje = (Lenguaje) visitLenguaje(ctx.lenguaje());
         bibliography.setLenguaje(lenguaje);
-        visitCitations(ctx.citations());
+        if (ctx.citations()!= null){
+            visitCitations(ctx.citations());
+        }
         System.out.println(bibliography.getCitations());
         return null;
     }
@@ -42,7 +48,7 @@ public class Visitor<T> extends citatorBaseVisitor<T> {
         Citation citation = new Citation();
         citation.setAuthorName((String) visitAuthorName(ctx.authorName()));
         citation.setAuthorLastName((String) visitAuthorLastName(ctx.authorLastName()));
-        citation.setCitationType((CitationType) visitCitationType(ctx.citationType()));
+        citation.setCitationType(resolver.resolveCitationType((String) visitCitationType(ctx.citationType())) );
         if (ctx.publicationDate()!= null){
             citation.setPublicationDate((Date) visitPublicationDate(ctx.publicationDate()));
         }
@@ -51,9 +57,6 @@ public class Visitor<T> extends citatorBaseVisitor<T> {
         }
         if (ctx.citationTitle()!= null){
             citation.setTitle((String) visitCitationTitle(ctx.citationTitle()));
-        }
-        if (ctx.resume()!= null){
-            citation.setResume((String) visitResume(ctx.resume()));
         }
         if (ctx.city()!= null){
             citation.setCity((String) visitCity(ctx.city()));
@@ -71,15 +74,23 @@ public class Visitor<T> extends citatorBaseVisitor<T> {
     }
 
     @Override public T visitAuthorName(citatorParser.AuthorNameContext ctx) {
-        return (T) ctx.ID().getText();
+        String SecondName = "";
+        if (ctx.ID(1)!= null){
+            SecondName = ctx.ID(1).getText();
+        }
+        return (T) (ctx.ID(0).getText() + SecondName);
     }
 
     @Override public T visitAuthorLastName(citatorParser.AuthorLastNameContext ctx) {
-        return (T) ctx.ID().getText();
+        String SecondLastName = "";
+        if (ctx.ID(1)!= null){
+            SecondLastName = ctx.ID(1).getText();
+        }
+        return (T)  (ctx.ID(0).getText() + SecondLastName);
     }
 
     @Override public T visitCitationTitle(citatorParser.CitationTitleContext ctx) {
-        return (T) ctx.ID().getText();
+        return (T) ctx.STRING().getText().substring(1,ctx.STRING().getText().length()-1);
     }
 
     @Override public T visitPublicationDate(citatorParser.PublicationDateContext ctx) {
@@ -94,19 +105,12 @@ public class Visitor<T> extends citatorBaseVisitor<T> {
         return (T) ctx.CITATIONTYPE().getText();
     }
 
-    @Override public T visitResume(citatorParser.ResumeContext ctx) {
-        return (T) ctx.RESUMETEXT();
-    }
-
     @Override public T visitDate(citatorParser.DateContext ctx) {
         Date date = new Date();
         date.setYear(Integer.valueOf(ctx.YEAR().getText()));
         date.setDate(Integer.valueOf(ctx.DAY().getText()));
-        if (ctx.MONTH()!= null){
-            date.setMonth(Integer.valueOf(ctx.MONTH().getText()));
-        }else{
-            date.setMonth((Integer) visitMonth(ctx.month()));
-        }
+        date.setMonth((Integer) visitMonth(ctx.month()));
+
         return (T)date;
     }
 
@@ -155,11 +159,11 @@ public class Visitor<T> extends citatorBaseVisitor<T> {
     }
 
     @Override public T visitEditorial(citatorParser.EditorialContext ctx) {
-        return (T) ctx.ID().getText();
+        return (T) ctx.STRING().getText().substring(1,ctx.STRING().getText().length()-1);
     }
 
     @Override public T visitWebsite(citatorParser.WebsiteContext ctx) {
-        return (T) new WebSite(ctx.ID(0).getText(), ctx.ID(1).getText());
+        return (T) new WebSite(ctx.STRING(0).getText().substring(1,ctx.STRING(0).getText().length()-1), ctx.STRING(1).getText().substring(1,ctx.STRING(1).getText().length()-1));
     }
 
     @Override public T visitArticle(citatorParser.ArticleContext ctx) {

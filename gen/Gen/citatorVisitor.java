@@ -95,12 +95,6 @@ public interface citatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEditorial(citatorParser.EditorialContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link citatorParser#resume}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitResume(citatorParser.ResumeContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link citatorParser#date}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

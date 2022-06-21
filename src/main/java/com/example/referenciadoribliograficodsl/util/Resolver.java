@@ -1,9 +1,11 @@
 package com.example.referenciadoribliograficodsl.util;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.example.referenciadoribliograficodsl.Entity.Citation;
+import com.example.referenciadoribliograficodsl.Entity.CitationType;
 import com.example.referenciadoribliograficodsl.Entity.Lenguaje;
 import com.example.referenciadoribliograficodsl.Entity.NotFoundDate;
 
@@ -47,7 +49,7 @@ public class Resolver {
     }
     public String resolveAuthorName(String AuthorName){
         List<String> names = List.of(AuthorName.split(" "));
-        List<Character> initials = List.of();
+        List<Character> initials = new ArrayList<>();
         String result = "";
         if(names.size()<1){
             for (String name:AuthorName.split(" ")) {
@@ -99,6 +101,18 @@ public class Resolver {
                 "(" + resolveDateArticle(citation.getConsultDate(), Lenguaje.SPANISH)+ ") " +
                 citation.getTitle() + " " + citation.getArticulo().getPaperName() + " (" +
                 citation.getArticulo().getVolumen() + ") " + citation.getArticulo().getPaginas();
+    }
+
+    public CitationType resolveCitationType(String type){
+        switch (type){
+            case "book":
+                return CitationType.book;
+            case "article":
+                return CitationType.article;
+            case "website":
+                return CitationType.website;
+        }
+        return null;
     }
 
 
